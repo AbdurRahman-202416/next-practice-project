@@ -82,7 +82,7 @@ export default function Home() {
                     type="text"
                     maxLength={6}
                     className="w-16 border basis-1/2 border-gray-300 rounded-md px-3 py-2 text-sm text-center"
-                    placeholder="010"
+                    placeholder="이름"
                     value={formData.phoneStart}
                     onChange={(e) => handleChange('phoneStart', e.target.value)}
                 />
@@ -91,7 +91,7 @@ export default function Home() {
                     type="text"
                     maxLength={1}
                     className="w-10 basis-1/6 border border-gray-300 rounded-md px-2 py-2 text-sm text-center"
-                    placeholder="0"
+                    placeholder="|"
                     value={formData.phoneMid}
                     onChange={(e) => handleChange('phoneMid', e.target.value)}
                 />
@@ -121,7 +121,7 @@ export default function Home() {
             </div>
 
             <p className="text-xs text-gray-500 mb-6 leading-snug">
-                이메일 주소는 카드 신청 결과 안내 및 본인 인증용으로 사용됩니다.
+                이메일 주소는 카드 신청 결과 안내 및 본인 인증용으로 사용됩니.
             </p>
 
             <button
