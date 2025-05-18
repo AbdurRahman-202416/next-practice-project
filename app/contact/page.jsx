@@ -18,7 +18,7 @@ export default function Home() {
 
     const isFormValid =
         formData.name &&
-        formData.phoneStart.length === 3 &&
+        formData.phoneStart.length === 6 &&
         formData.phoneMid.length === 1 &&
         formData.emailId &&
         selectedDomain;
@@ -47,11 +47,16 @@ export default function Home() {
     const domains = ['직접입력', 'gmail.com', 'naver.com', 'daum.net', 'nate.com'];
 
     return (
-        <div className="min-h-screen border bg-white px-4 pt-6 pb-10 font-sans text-black relative max-w-sm mx-auto block ">
+        <div className=" border border-gray-200 bg-white px-4 pt-10 pb-10 font-sans text-black relative max-w-sm mx-auto block ">
             {/* Top Icons */}
             <div className="flex justify-between items-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                </svg>
+
                 <ArrowsPointingOutIcon className="w-5 h-5 text-gray-400" />
-                <ArrowsPointingOutIcon className="w-5 h-5 text-gray-400" />
+
+
             </div>
 
             {/* Header */}
