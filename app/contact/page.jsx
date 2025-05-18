@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     ArrowsPointingOutIcon,
     ChevronDownIcon,
@@ -9,11 +9,45 @@ import {
 export default function Home() {
     const [showPopup, setShowPopup] = useState(false);
     const [selectedDomain, setSelectedDomain] = useState('직접입력');
+    const [formData, setFormData] = useState({
+        name: '',
+        phoneStart: '',
+        phoneMid: '',
+        emailId: '',
+    });
+
+    const isFormValid =
+        formData.name &&
+        formData.phoneStart.length === 3 &&
+        formData.phoneMid.length === 1 &&
+        formData.emailId &&
+        selectedDomain;
+
+    const handleChange = (field, value) => {
+        setFormData((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
+    };
+
+    const handleSubmit = () => {
+        const fullEmail =
+            selectedDomain === '직접입력'
+                ? formData.emailId
+                : `${formData.emailId}@${selectedDomain}`;
+        const dataToSubmit = {
+            name: formData.name,
+            phone: `${formData.phoneStart}-${formData.phoneMid}-****`,
+            email: fullEmail,
+        };
+        console.log('Submitted Data:', dataToSubmit);
+        alert(JSON.stringify(dataToSubmit, null, 2));
+    };
 
     const domains = ['직접입력', 'gmail.com', 'naver.com', 'daum.net', 'nate.com'];
 
     return (
-        <div className="min-h-screen bg-white px-4 pt-6 pb-10 font-sans text-black relative max-w-sm mx-auto block ">
+        <div className="min-h-screen border bg-white px-4 pt-6 pb-10 font-sans text-black relative max-w-sm mx-auto block ">
             {/* Top Icons */}
             <div className="flex justify-between items-center mb-6">
                 <ArrowsPointingOutIcon className="w-5 h-5 text-gray-400" />
@@ -32,29 +66,31 @@ export default function Home() {
                 type="text"
                 placeholder="이름 입력"
                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm mb-5"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
             />
 
             {/* Phone Number */}
             <label className="text-sm font-medium block mb-1">휴대폰번호</label>
             <div className="flex items-center gap-1 mb-5">
-                {/* First: Area Code or Start */}
                 <input
                     type="text"
                     maxLength={6}
                     className="w-16 border basis-1/2 border-gray-300 rounded-md px-3 py-2 text-sm text-center"
                     placeholder="010"
+                    value={formData.phoneStart}
+                    onChange={(e) => handleChange('phoneStart', e.target.value)}
                 />
                 <label className="text-sm font-medium block mb-1">-</label>
-                {/* Second: 1-digit input */}
                 <input
                     type="text"
                     maxLength={1}
                     className="w-10 basis-1/6 border border-gray-300 rounded-md px-2 py-2 text-sm text-center"
-                    placeholder="|"
+                    placeholder="0"
+                    value={formData.phoneMid}
+                    onChange={(e) => handleChange('phoneMid', e.target.value)}
                 />
-
-                {/* Last: Hidden/masked */}
-                <div className=" border basis-1/4 border-gray-300 rounded-md px-3 py-2 text-sm bg-gray-100 text-gray-400 text-center">
+                <div className="border basis-1/4 border-gray-300 rounded-md px-3 py-2 text-sm bg-gray-100 text-gray-400 text-center">
                     ••••
                 </div>
             </div>
@@ -66,6 +102,8 @@ export default function Home() {
                     type="text"
                     className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm"
                     placeholder="이메일 입력"
+                    value={formData.emailId}
+                    onChange={(e) => handleChange('emailId', e.target.value)}
                 />
                 <span className="text-gray-500 text-sm">@</span>
                 <button
@@ -81,7 +119,14 @@ export default function Home() {
                 이메일 주소는 카드 신청 결과 안내 및 본인 인증용으로 사용됩니다.
             </p>
 
-            <button className="w-full bg-gray-200 text-gray-500 py-3 rounded-md text-sm font-medium">
+            <button
+                className={`w-full py-3 rounded-md text-sm font-medium transition ${isFormValid
+                    ? 'bg-purple-600 text-white'
+                    : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    }`}
+                onClick={handleSubmit}
+                disabled={!isFormValid}
+            >
                 다음단계로 입력하기
             </button>
 
