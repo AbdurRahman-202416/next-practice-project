@@ -14,7 +14,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-gray-800 text-white p-4 shadow-md">
+    <nav className="bg-gray-800 sticky top-0 text-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="sm:text-xl text-lg text-green-500 font-bold">Next App</h1>
         <ul className="flex space-x-6">

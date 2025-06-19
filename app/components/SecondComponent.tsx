@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { TodoContext } from "../page";
 import TodoContextType, { TodoType } from "../Type";
+import Loader from "./Loader";
 
 export default function SecondComponent() {
   const { todos, loading } = useContext(TodoContext) as TodoContextType;
@@ -12,25 +13,7 @@ export default function SecondComponent() {
       </h1>
 
       {loading ? (
-        <div className="flex justify-center items-center h-40" role="status">
-          <svg
-            aria-hidden="true"
-            className="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-pink-500"
-            viewBox="0 0 100 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M100 50.5908C100 78.2051 77.6142 100.591..."
-              fill="currentColor"
-            />
-            <path
-              d="M93.9676 39.0409C96.393..."
-              fill="currentFill"
-            />
-          </svg>
-          <span className="sr-only">Loading...</span>
-        </div>
+       <Loader/>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {todos?.map((todo: TodoType, index: number) => (

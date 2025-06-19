@@ -89,10 +89,10 @@ export default function TodoList() {
 
   if (isLoading)
     return (
-      <div role="status " className="flex items-center justify-center h-screen">
+      <div role="status " classNameName="flex items-center justify-center h-screen">
         <svg
           aria-hidden="true"
-          className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"
+          classNameName="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -106,27 +106,27 @@ export default function TodoList() {
             fill="currentFill"
           />
         </svg>
-        <span className="sr-only">Loading...</span>
+        <span classNameName="sr-only">Loading...</span>
       </div>
     );
 
   if (error) return <div>Something went wrong</div>;
 
   return (
-    <div className="p-6 max-w-md mx-auto space-y-4">
-      <h1 className="text-xl font-bold">📝 Todo List</h1>
+    <div classNameName="p-6 max-w-md mx-auto space-y-4">
+      <h1 classNameName="text-xl font-bold">📝 Todo List</h1>
 
       {/* Input Form */}
-      <div className="space-y-2">
+      <div classNameName="space-y-2">
         <input
           type="text"
           placeholder="Enter todo text"
-          className="w-full px-3 py-2 border rounded"
+          classNameName="w-full px-3 py-2 border rounded"
           value={formData.text}
           onChange={(e) => setFormData({ ...formData, text: e.target.value })}
         />
         <select
-          className="w-full px-3 py-2 border rounded"
+          classNameName="w-full px-3 py-2 border rounded"
           value={formData.priority}
           onChange={(e) =>
             setFormData({ ...formData, priority: e.target.value })
@@ -138,14 +138,14 @@ export default function TodoList() {
         </select>
         <input
           type="date"
-          className="w-full px-3 py-2 border rounded"
+          classNameName="w-full px-3 py-2 border rounded"
           value={formData.deadline}
           onChange={(e) =>
             setFormData({ ...formData, deadline: e.target.value })
           }
         />
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded w-full"
+          classNameName="bg-blue-600 text-white px-4 py-2 rounded w-full"
           onClick={() => mutation.mutate({ ...formData, complete: false })}
         >
           ➕ Add Todo
@@ -153,28 +153,28 @@ export default function TodoList() {
       </div>
 
       {/* Todo List */}
-      <ul className="space-y-2">
+      <ul classNameName="space-y-2">
         {todos.map((todo) => (
           <li
             key={todo._id}
-            className="flex justify-between items-center border p-2 rounded"
+            classNameName="flex justify-between items-center border p-2 rounded"
           >
             <div>
-              <p className="font-semibold">{todo.text}</p>
-              <p className="text-sm text-gray-500">
+              <p classNameName="font-semibold">{todo.text}</p>
+              <p classNameName="text-sm text-gray-500">
                 Priority: {todo.priority} | Deadline: {todo.deadline}
               </p>
             </div>
-            <div className="space-x-2">
+            <div classNameName="space-x-2">
               <button
                 onClick={() => updateMutation.mutate(todo._id)}
-                className="bg-yellow-500 text-white px-2 rounded"
+                classNameName="bg-yellow-500 text-white px-2 rounded"
               >
                 Edit
               </button>
               <button
                 onClick={() => deleteMutation.mutate(todo._id)}
-                className="bg-red-500 text-white px-2 rounded"
+                classNameName="bg-red-500 text-white px-2 rounded"
               >
                 Delete
               </button>
